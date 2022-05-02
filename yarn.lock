@@ -2279,6 +2279,7 @@ __metadata:
     webpack-cli: ^4.9.2
     webpack-dev-server: ^4.8.1
     webpack-node-externals: ^3.0.0
+    webpack-pnp-externals: ^1.1.0
   languageName: unknown
   linkType: soft
 
@@ -4502,6 +4503,13 @@ __metadata:
   version: 3.0.0
   resolution: "webpack-node-externals@npm:3.0.0"
   checksum: 355080c35c821115b97dda8c93d9d0565a90a6012a532324eb0d6a64f8f0d609431fd29504fc7ce414755841ac14f601f3eef99472c2c5dc00233b504ebe73f2
+  languageName: node
+  linkType: hard
+
+"webpack-pnp-externals@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "webpack-pnp-externals@npm:1.1.0"
+  checksum: 7bc93a8dc0d5fa7a5e405b6e92f28a8d65e98f242baa07b0a48a9093666f80507e26b73fab7104383a66d36b2458e35487bc0a2458ca8bce26553ed5d74cc428
   languageName: node
   linkType: hard
 

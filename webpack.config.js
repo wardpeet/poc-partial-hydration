@@ -1,5 +1,6 @@
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
+const { WebpackPnpExternals } = require("webpack-pnp-externals");
 
 const ServerComponents = {
   apply: function (resolver) {
@@ -87,6 +88,6 @@ module.exports = [
     externalsPresets: {
       node: true,
     },
-    externals: [nodeExternals()],
+    externals: [nodeExternals(), WebpackPnpExternals()],
   },
 ];
