@@ -40,8 +40,6 @@ export default function noHydrate(lazyImport) {
             }
           }
 
-          console.log({ attributes });
-
           return {
             default: () =>
               createElement(script.previousSibling.tagName.toLowerCase(), {

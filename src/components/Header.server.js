@@ -12,6 +12,7 @@ export function Header() {
         borderBottom: "1px solid rgb(0, 0, 0)",
       }}
     >
+      <p>no hydration</p>
       <nav>
         <ul>
           <li>

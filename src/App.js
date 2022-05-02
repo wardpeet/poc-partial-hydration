@@ -1,6 +1,6 @@
 import { createElement, Suspense, lazy } from "react";
 import { Header } from "./Header";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
 export function App() {
   return (
@@ -27,6 +27,20 @@ export function App() {
           />
         </Routes>
       </main>
+
+      <footer>
+        <p>with hydration</p>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Page 1</Link>
+            </li>
+            <li>
+              <Link to="/page-2/">Page 2</Link>
+            </li>
+          </ul>
+        </nav>
+      </footer>
     </div>
   );
 }
