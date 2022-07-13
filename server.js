@@ -5,7 +5,9 @@ const { PassThrough } = require("stream");
 const { createRequire } = require("module");
 const React = require("react");
 const { renderToPipeableStream } = require("react-dom/server");
-const { StaticRouter } = require("react-router-dom/server");
+const {
+  renderToPipeableStream: ServerComponentsStream,
+} = require("react-server-dom-webpack/writer.node.server");
 
 http
   .createServer(function (req, res) {
@@ -14,22 +16,33 @@ http
       return;
     }
 
+    const cleanRequire = createRequire(__filename);
+    Object.keys(cleanRequire.cache).forEach((key) => {
+      if (key.includes("dist/server")) {
+        delete cleanRequire.cache[key];
+      }
+    });
+    if (req.url.startsWith("/page-data/")) {
+      const { Header } = cleanRequire("./dist/server/header.server");
+      const { pipe } = ServerComponentsStream(
+        React.createElement(Header),
+        JSON.parse(
+          fs.readFileSync("./dist/client/react-client-manifest.json", "utf8")
+        )
+      );
+
+      pipe(res);
+      return;
+    }
+
     if (req.headers.accept.includes("text/html")) {
       let didError = false;
-      const cleanRequire = createRequire(__filename);
-      delete cleanRequire.cache[
-        cleanRequire.resolve("./dist/server/index.server")
-      ];
-      const { App } = cleanRequire("./dist/server/index.server");
+      const { ServerApp } = cleanRequire("./dist/server/index.server");
 
       const stream = renderToPipeableStream(
-        React.createElement(
-          StaticRouter,
-          {
-            location: req.url,
-          },
-          React.createElement(App)
-        ),
+        React.createElement(ServerApp, {
+          location: req.url,
+        }),
         {
           onShellError(error) {
             // Something errored before we could complete the shell so we emit an alternative shell.

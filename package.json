@@ -5,9 +5,11 @@
   "license": "MIT",
   "packageManager": "yarn@3.2.0",
   "dependencies": {
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-router-dom": "^6.3.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
+    "react-server-dom-webpack": "experimental"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
@@ -26,5 +28,10 @@
     "start:webpack": "cross-env NODE_ENV=development webpack --watch --node-env development",
     "start:node": "cross-env NODE_ENV=development node server.js"
   },
-  "browserslist": "last 2 Chrome versions"
+  "browserslist": "last 2 Chrome versions",
+  "dependenciesMeta": {
+    "react-router-dom@6.3.0": {
+      "unplugged": true
+    }
+  }
 }

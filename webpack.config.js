@@ -1,6 +1,7 @@
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 const { WebpackPnpExternals } = require("webpack-pnp-externals");
+const ServerComponentsWebpackPlugin = require("react-server-dom-webpack/plugin");
 
 const ServerComponents = {
   apply: function (resolver) {
@@ -52,19 +53,25 @@ module.exports = [
         },
       ],
     },
+    devtool: "source-map",
     optimization: {
       minimize: false,
     },
-    resolve: {
-      plugins: [ServerComponents],
-    },
+    plugins: [
+      new ServerComponentsWebpackPlugin({
+        isServer: false,
+      }),
+    ],
   },
   {
-    entry: "./src/App.js",
+    entry: {
+      index: "./src/index.server.js",
+      header: "./src/components/Header.server.sc.js",
+    },
     mode: "development",
     output: {
       path: path.resolve(__dirname, "./dist", "server"),
-      filename: "index.server.js",
+      filename: "[name].server.js",
       libraryTarget: "commonjs2",
       clean: true,
     },

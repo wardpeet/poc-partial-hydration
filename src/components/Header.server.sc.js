@@ -1,4 +1,4 @@
-import { Link } from "./Link.client";
+import { Link } from "./Link.server.sc";
 
 export function Header() {
   return (
